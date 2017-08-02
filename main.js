@@ -26,6 +26,8 @@ function createWindow () {
     slashes: true
   }))
 
+  mainWindow.setMenuBarVisibility(false);
+
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
 

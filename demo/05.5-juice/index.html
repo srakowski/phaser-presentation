@@ -21,26 +21,24 @@
             update: update,
         });
 
+        var planet;
         var player;
         var weapon;
         var controls;
         var enemies;
         var scoreText;
-        var fireSfx;
-        var explodeSfx;
 
         function preload() {
             game.load.image('planet', 'assets/planet.png');
             game.load.image('player', 'assets/spaceShip.png');
             game.load.image('missile', 'assets/missile.png');
             game.load.image('enemy', 'assets/enemy.png');
-            game.load.audio('explode', 'assets/explode.ogg');
-            game.load.audio('fire', 'assets/fire.ogg');
-            game.load.audio('music', 'assets/VolatileReaction.ogg');
         }
         
         function create() {
-            game.add.sprite(-40, 0, 'planet');
+            planet = game.add.sprite(-40, 0, 'planet');
+            game.physics.enable(planet, Phaser.Physics.ARCADE);
+
             player = game.add.sprite(260, game.world.centerY, 'player');
             player.anchor.setTo(0.5, 0.5);
             player.angle = -90;
@@ -68,19 +66,11 @@
                 fill: "#FAFAFA",
                 align: "right",
             });
-
-            fireSfx = game.add.audio('fire');
-            explodeSfx = game.add.audio('explode');
-            weapon.onFire.add(function () { fireSfx.play(); }, this);
-
-            music = game.add.audio('music');
-            music.play();
-            music.loopFull();
-            music.volume = 0.25;
         }
 
         function update() {
             game.physics.arcade.overlap(weapon.bullets, enemies, onHitEnemy);
+            game.physics.arcade.overlap(planet, enemies, onHitPlanet);
 
             if (controls.up.isDown) {
                 player.y -= 6;
@@ -97,7 +87,12 @@
             enemy.destroy();
             player.score += 250;
             scoreText.setText(pad(player.score, 6));
-            explodeSfx.play();
+        }
+
+        function onHitPlanet(planet, enemy) {
+            game.camera.shake(0.01, 200);
+            enemy.destroy();
+            planet.x -= 10;
         }
 
         function spawnEnemy() {

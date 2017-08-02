@@ -29,6 +29,12 @@
 		document.getElementsByTagName('head')[0].appendChild(link);
 	</script>
 
+	<style>
+		.dim {
+			color: lightgray;
+		}
+	</style>
+
 	<!--[if lt IE 9]>
 		<script src="lib/js/html5shiv.js"></script>
 		<![endif]-->
@@ -65,7 +71,8 @@
 					<a href="http://phaser.io/">http://phaser.io/</a>
 				</p>
 				<p>Phaser is a fast, free, and fun open source HTML5 2D game framework</p>
-				<p>MIT License</p>
+				<p>Created by Richard Davey <a href="http://twitter.com/photonstorm">@photonstorm</a>
+				<p>MIT Licensed</p>
 			</section>
 
 			<section>
@@ -76,97 +83,129 @@
 			</section>
 
 			<section>
-				<h3>What is needed?</h3>
+				<h3>What do we need to learn?</h3>
 				<ul>
-					<li class="fragment">Load and Display Sprites (Images)</li>
+					<li class="fragment">Setup</li>
+					<li class="fragment">Load & Display Sprites (Images)</li>
 					<li class="fragment">Input & Controls</li>
 					<li class="fragment">Collision Detection</li>
 					<li class="fragment">Text Rendering</li>
-					<li class="fragment">Load and Play Sound Effects & Music</li>
-					<li class="fragment">Camera</li>
+					<li class="fragment">"Juice"</li>
+					<li class="fragment">Load & Play Sound Effects & Music</li>
 					<li class="fragment">Particles</li>
 					<li class="fragment">Game State Management</li>
 				</ul>
 			</section>
 
 			<section>
-				<h3>Getting Started</h3>
-				<ul>					
+				<h3>What do we need?</h3>
+				<ul>
 					<li class="fragment">Phaser CE 2.8.1 (<a href="https://github.com/photonstorm/phaser-ce/releases/tag/v2.8.1">https://github.com/photonstorm/phaser-ce/releases/tag/v2.8.1</a>)</li>
-					<li class="fragment">Web server?
+					<li class="fragment">Web server
 						<pre>npm install -g http-server
 http-server</pre>
 					</li>
 					<li class="fragment">Electron
-						<pre>mainWindow = new BrowserWindow({width: 800, height: 600,
+						<pre><code>mainWindow = new BrowserWindow({width: 800, height: 600,
   webPreferences: {
-  webSecurity: false
+  	webSecurity: false
   }
-})</pre>
+})</code></pre>
 					</li>
 				</ul>
 			</section>
 
 			<section>
-				<h3>Setup</h3>
-				<pre>HTML<code><div id="game"></div></code></pre>
-				<pre>JavaScript<code>var game = new Phaser.Game(1280, 720, Phaser.AUTO, 'game', {
-  create: create,
+				<h3>What do we need to learn?</h3>
+				<ul>
+					<li><a href="./demo/01-setup/index.html">Setup</a></li>
+					<li class="dim">Load & Display Sprites (Images)</li>
+					<li class="dim">Input & Controls</li>
+					<li class="dim">Collision Detection</li>
+					<li class="dim">Text Rendering</li>
+					<li class="dim">"Juice"</li>
+					<li class="dim">Load & Play Sound Effects & Music</li>
+					<li class="dim">Particles</li>
+					<li class="dim">Game State Management</li>
+				</ul>
+			</section>
+
+			<section>
+				<h5>Setup</h5>
+				<pre><code><div id="game"></div>
+<script src="phaser.min.js"></script></code></pre>
+				<pre><code>var game = new Phaser.Game(1280, 720, Phaser.AUTO, 'game', {
+	preload: preload,
+	create: create,
+	update: update,
 });
+
+function preload() { }
 
 function create() {
   game.stage.backgroundColor = '#6495ed';
-}</code></pre>
-				<p><a href="./demo/01-setup/index.html">let's take a look</a></p>
+}
+
+function update() {}</code></pre>
+			<img class="fragment" style="border: none; margin-top: -20px;" src="./img/lifecyle.png" />
 			</section>
 
-
-
 			<section>
-				<h3>Load and Display Sprites (Images)</h3>
-				<p>
-						<img height="300" src="./demo/02-sprites/assets/world.png" />
-						<img src="./demo/02-sprites/assets/spaceShip.png" /><br />
-					</p>
-				<p><a href="./demo/02-sprites/index.html">let's take a look</a></p>
-				<small>Resource: <a href="http://kenney.nl">kenney.nl</a></small>
+				<h3>What do we need to learn?</h3>
+				<ul>
+					<li><s>Setup</s></li>
+					<li><a href="./demo/02-sprites/index.html">Load & Display Sprites (Images)</a></li>
+					<li class="dim">Input & Controls</li>
+					<li class="dim">Collision Detection</li>
+					<li class="dim">Text Rendering</li>
+					<li class="dim">"Juice"</li>
+					<li class="dim">Load & Play Sound Effects & Music</li>
+					<li class="dim">Particles</li>
+					<li class="dim">Game State Management</li>
+				</ul>
 			</section>
 
-
-
 			<section>
-				<h3>Load And Display Sprites (Images)</h3>
-				<pre><code data-trim data-noescape>var game = new Phaser.Game(1280, 720, Phaser.AUTO, 'game', {
-  <mark>preload: preload,</mark>
-  create: create,
-});</code></pre>
+				<h5>Load & Display Sprites (Images)</h5>
 <pre><code>function preload() {
-  game.load.image('world', 'assets/world.png');
+  game.load.image('planet', 'assets/planet.png');
   game.load.image('player', 'assets/spaceShip.png');
 }</code></pre>
 <pre><code>function create() {
-  game.add.sprite(-40, 0, 'world');
+  game.add.sprite(-40, 0, 'planet');
   var player = game.add.sprite(260, 
     game.world.centerY, 'player');
   player.anchor.setTo(0.5, 0.5);
   player.angle = -90;
 }</code></pre>
-			</section>
 
-
-			<section>
-					<h2>Input & Controls</h2>
-					<p><a href="./demo/03-input.1/index.html">let's take a look</a></p>
 			</section>
 
 			<section>
-				<h3>Ship Movement</h3>
-<pre><code data-trim data-noescape>
-var game = new Phaser.Game(1280, 720, Phaser.AUTO, 'game', {
-  preload: preload,
-  create: create,
-  <mark>update: update,</mark>
-});</code></pre>
+				<h5>2D Sprites/Graphics Resources</h5>
+				<ul>
+					<li>Free 2D Sprites: <a href="http://kenney.nl">kenney.nl</a></li>
+					<li>Image Editor: <a href="https://www.gimp.org/">GIMP</a></li>
+				</ul>
+			</section>
+
+			<section>
+				<h3>What do we need to learn?</h3>
+				<ul>
+					<li><s>Setup</s></li>
+					<li><s href="./demo/02-sprites/index.html">Load & Display Sprites (Images)</s></li>
+					<li><a href="./demo/03-input.1/index.html">Input & Controls</a></li>
+					<li class="dim">Collision Detection</li>
+					<li class="dim">Text Rendering</li>
+					<li class="dim">"Juice"</li>
+					<li class="dim">Load & Play Sound Effects & Music</li>
+					<li class="dim">Particles</li>
+					<li class="dim">Game State Management</li>
+				</ul>
+			</section>
+
+			<section>
+				<h5>Ship Movement</h5>
 <pre><code>function create() {
   /* ... */
   controls = game.input.keyboard.createCursorKeys();
@@ -183,7 +222,7 @@ var game = new Phaser.Game(1280, 720, Phaser.AUTO, 'game', {
 			</section>
 
 			<section>
-					<h3>Firing Weapon (Weapon Plugin)</h3>
+					<h5>Firing Weapon (Weapon Plugin)</h5>
 <pre><code>function create() {
   /* ... */
   weapon = game.add.weapon(30, 'missile');
@@ -191,8 +230,6 @@ var game = new Phaser.Game(1280, 720, Phaser.AUTO, 'game', {
   weapon.bulletSpeed = 1000;
   weapon.fireRate = 400;
   weapon.bulletAngleOffset = 90;
-  weapon.bulletAngleVariance = 2;
-  weapon.bulletSpeedVariance = 200;
   weapon.trackSprite(player, 32, 0, false);
   /* ... */
   controls.fire = 
@@ -207,12 +244,22 @@ var game = new Phaser.Game(1280, 720, Phaser.AUTO, 'game', {
 			</section>
 
 			<section>
-					<h2>Collision Detection</h2>
-					<p><a href="./demo/04-collisions.1/index.html">let's take a look</a></p>
+				<h3>What do we need to learn?</h3>
+				<ul>
+					<li><s>Setup</s></li>
+					<li><s href="./demo/02-sprites/index.html">Load & Display Sprites (Images)</s></li>
+					<li><s href="./demo/03-input.1/index.html">Input & Controls</s></li>
+					<li class="dim"><a href="./demo/04-collisions.1/index.html">Collision Detection</a></li>
+					<li class="dim">Text Rendering</li>
+					<li class="dim">"Juice"</li>
+					<li class="dim">Load & Play Sound Effects & Music</li>
+					<li class="dim">Particles</li>
+					<li class="dim">Game State Management</li>
+				</ul>
 			</section>
 
 			<section>
-					<h3>Spawning Enemies</h3>
+					<h5>Spawning Enemies</h5>
 <pre><code>function create() {
   /* ... */
   enemies = game.add.group();
@@ -245,14 +292,22 @@ var game = new Phaser.Game(1280, 720, Phaser.AUTO, 'game', {
 
 
 			<section>
-					<h2>Text Rendering</h2>
-					<p><a href="./demo/05-text/index.html">let's take a look</a></p>
+				<h3>What do we need to learn?</h3>
+				<ul>
+					<li><s>Setup</s></li>
+					<li><s href="./demo/02-sprites/index.html">Load & Display Sprites (Images)</s></li>
+					<li><s href="./demo/03-input.1/index.html">Input & Controls</s></li>
+					<li><s href="./demo/04-collisions.1/index.html">Collision Detection</s></li>
+					<li class="dim"><a href="./demo/05-text/index.html">Text Rendering</a></li>
+					<li class="dim">"Juice"</li>
+					<li class="dim">Load & Play Sound Effects & Music</li>
+					<li class="dim">Particles</li>
+					<li class="dim">Game State Management</li>
+				</ul>
 			</section>
 
-
-
 			<section>
-					<h3>Text Rendering</h3>
+					<h5>Text Rendering</h5>
 <pre><code>function create() {
   /* ... */
   player.score = 0;
@@ -267,18 +322,48 @@ var game = new Phaser.Game(1280, 720, Phaser.AUTO, 'game', {
 <pre><code>function onHitEnemy(bullet, enemy) {
   enemy.destroy();
   player.score += 250;
-  scoreText.setText(pad(player.score, 6));
+  scoreText.setText(padWithLeadingZeros(player.score, 6));
 }</code></pre>
 		</section>
 
 			<section>
-					<h2>Load and Play Sound Effects & Music</h2>
-					<p><a href="./demo/07-music/index.html">let's take a look</a></p>
+				<h3>What do we need to learn?</h3>
+				<ul>
+					<li><s>Setup</s></li>
+					<li><s href="./demo/02-sprites/index.html">Load & Display Sprites (Images)</s></li>
+					<li><s href="./demo/03-input.1/index.html">Input & Controls</s></li>
+					<li><s href="./demo/04-collisions.1/index.html">Collision Detection</s></li>
+					<li><s href="./demo/05-text/index.html">Text Rendering</s></li>
+					<li><a href="./demo/05.5-juice/index.html">"Juice"</a></li>
+					<li class="dim">Load & Play Sound Effects & Music</li>
+					<li class="dim">Particles</li>
+					<li class="dim">Game State Management</li>
+				</ul>
+			</section>
+
+			<section>
+				juice
 			</section>
 
 
 			<section>
-					<h3>Load and Play Sound Effects</h3>
+				<h3>What do we need to learn?</h3>
+				<ul>
+					<li><s>Setup</s></li>
+					<li><s href="./demo/02-sprites/index.html">Load & Display Sprites (Images)</s></li>
+					<li><s href="./demo/03-input.1/index.html">Input & Controls</s></li>
+					<li><s href="./demo/04-collisions.1/index.html">Collision Detection</s></li>
+					<li><s href="./demo/05-text/index.html">Text Rendering</s></li>
+					<li><s href="./demo/05.5-juice/index.html">"Juice"</s></li>
+					<li><a href="./demo/07-music/index.html">Load & Play Sound Effects & Music</a></li>
+					fix planet collide
+					<li class="dim">Particles</li>
+					<li class="dim">Game State Management</li>
+				</ul>
+			</section>
+
+			<section>
+					<h5>Load & Play Sound Effects</h5>
 <pre><code>function preload() {
   /* ... */
   game.load.audio('explode', 'assets/explode.ogg');
@@ -294,11 +379,11 @@ var game = new Phaser.Game(1280, 720, Phaser.AUTO, 'game', {
   /* ... */
   explodeSfx.play();
 }</code></pre>
-<p><small>.audio, .ogg?, onFire, Resource: <a href="http://www.drpetter.se/project_sfxr.html">SFXR</a></small></p>
+<p><small>.audio, .ogg?, onFire</small></p>
 			</section>
 
 			<section>
-					<h3>Load and Play Music</h3>
+					<h5>Load & Play Music</h5>
 <pre><code>function preload() {
   /* ... */
   game.load.audio('music', 'assets/VolatileReaction.ogg');
@@ -310,21 +395,38 @@ var game = new Phaser.Game(1280, 720, Phaser.AUTO, 'game', {
   music.loopFull();
   music.volume = 0.25;
 }</code></pre>
+			</section>
+
+			<section>
+				<h5>Audio Resources</h5>
 <p><small>Resource: <a href="https://incompetech.com/">Incompetech.com</a>
 <br />Volatile Reaction Kevin MacLeod (incompetech.com)<br />
 Licensed under Creative Commons: By Attribution 3.0 License<br />
 http://creativecommons.org/licenses/by/3.0/</small></p>
+ Resource: <a href="http://www.drpetter.se/project_sfxr.html">SFXR</a>
+				</ul>
 			</section>
 
-			<section>
+			<!--<section>
 					<h2>Camera</h2>
 <pre><code>game.camera.shake(0.01, 200);</code></pre>
 					<p><a href="./demo/08-camera/index.html">let's take a look</a></p>
-			</section>
+			</section>-->
+
 
 			<section>
-					<h2>Particles</h2>
-					<p><a href="./demo/09-particles/index.html">let's take a look</a></p>
+				<h3>What do we need to learn?</h3>
+				<ul>
+					<li><s>Setup</s></li>
+					<li><s href="./demo/02-sprites/index.html">Load & Display Sprites (Images)</s></li>
+					<li><s href="./demo/03-input.1/index.html">Input & Controls</s></li>
+					<li><s href="./demo/04-collisions.1/index.html">Collision Detection</s></li>
+					<li><s href="./demo/05-text/index.html">Text Rendering</s></li>
+					<li><s href="./demo/05.5-juice/index.html">"Juice"</s></li>
+					<li><s href="./demo/07-music/index.html">Load & Play Sound Effects & Music</s></li>
+					<li><a href="./demo/09-particles/index.html">Particles</a></li>
+					<li class="dim">Game State Management</li>
+				</ul>
 			</section>
 
 			<section>
@@ -349,8 +451,18 @@ http://creativecommons.org/licenses/by/3.0/</small></p>
 			</section>
 
 			<section>
-					<h2>Game State Management</h2>
-					<p><a href="./demo/10-state/index.html">let's take a look</a></p>
+				<h3>What do we need to learn?</h3>
+				<ul>
+					<li><s>Setup</s></li>
+					<li><s href="./demo/02-sprites/index.html">Load & Display Sprites (Images)</s></li>
+					<li><s href="./demo/03-input.1/index.html">Input & Controls</s></li>
+					<li><s href="./demo/04-collisions.1/index.html">Collision Detection</s></li>
+					<li><s href="./demo/05-text/index.html">Text Rendering</s></li>
+					<li><s href="./demo/05.5-juice/index.html">"Juice"</s></li>
+					<li><s href="./demo/07-music/index.html">Load & Play Sound Effects & Music</s></li>
+					<li><s href="./demo/09-particles/index.html">Particles</s></li>
+					<li><a href="./demo/10-state/index.html">Game State Management</a></li>
+				</ul>
 			</section>
 
 <section>
@@ -388,7 +500,7 @@ game.state.start('menu');
 
 			<section>
 				<h1>Thank you!</h1>
-				<p>Twitter: s@Shwany</p>
+				<p>Twitter: <a href="">@Shwany</a></p>
 			</section>
 
 		</div>

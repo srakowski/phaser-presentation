@@ -21,12 +21,12 @@
         });
 
         function preload() {
-            game.load.image('world', 'assets/world.png');
+            game.load.image('planet', 'assets/planet.png');
             game.load.image('player', 'assets/spaceShip.png');
         }
         
         function create() {
-            game.add.sprite(-40, 0, 'world');
+            game.add.sprite(-40, 0, 'planet');
             var player = game.add.sprite(260, game.world.centerY, 'player');
             player.anchor.setTo(0.5, 0.5);
             player.angle = -90;
