@@ -70,7 +70,6 @@
 					<br />
 					<a href="http://phaser.io/">http://phaser.io/</a>
 				</p>
-				<p>Phaser is a fast, free, and fun open source HTML5 2D game framework</p>
 				<p>Created by Richard Davey <a href="http://twitter.com/photonstorm">@photonstorm</a>
 				<p>MIT Licensed</p>
 			</section>
@@ -184,8 +183,11 @@ function update() {}</code></pre>
 			<section>
 				<h5>2D Sprites/Graphics Resources</h5>
 				<ul>
-					<li>Free 2D Sprites: <a href="http://kenney.nl">kenney.nl</a></li>
-					<li>Image Editor: <a href="https://www.gimp.org/">GIMP</a></li>
+					<li>Free Assets: <a href="http://kenney.nl">kenney.nl</a></li>
+					<li>Image Editing: <a href="https://www.gimp.org/">GIMP</a></li>
+					<li>Image Editing: <a href="https://www.getpaint.net/">Paint.NET</a>
+					<li>Vector art: <a href="https://inkscape.org/en/">Inkscape</a>
+					<li>Painting: <a href="https://krita.org/en/">Krita</a>
 				</ul>
 			</section>
 
@@ -327,6 +329,14 @@ function update() {}</code></pre>
 		</section>
 
 			<section>
+				<h3>What is Juice?</h3>
+				<ul class="fragment">
+					<li><a href="https://www.youtube.com/watch?v=Fy0aCDmgnxg&list=PLXU8Ef7V1A0EmNcBTy5EBCLUYay8Rz5A4">Juice it or lose it</a>
+					<li><a href="https://www.youtube.com/watch?v=AJdEqssNZ-U">The art of screenshake</a></li>
+				</ul>
+			</section>
+
+			<section>
 				<h3>What do we need to learn?</h3>
 				<ul>
 					<li><s>Setup</s></li>
@@ -342,9 +352,18 @@ function update() {}</code></pre>
 			</section>
 
 			<section>
-				juice
+				<h5>"Juice"</h5>
+<pre><code>function create() {
+  /* ... */
+  weapon.bulletAngleVariance = 2;
+  weapon.bulletSpeedVariance = 200;
+  /* ... */
+}</code></pre>
+<pre><code>function onHitPlanet(planet, enemy) {
+  game.camera.shake(0.01, 200);
+  /* ... */
+}</code></pre>
 			</section>
-
 
 			<section>
 				<h3>What do we need to learn?</h3>
@@ -356,7 +375,6 @@ function update() {}</code></pre>
 					<li><s href="./demo/05-text/index.html">Text Rendering</s></li>
 					<li><s href="./demo/05.5-juice/index.html">"Juice"</s></li>
 					<li><a href="./demo/07-music/index.html">Load & Play Sound Effects & Music</a></li>
-					fix planet collide
 					<li class="dim">Particles</li>
 					<li class="dim">Game State Management</li>
 				</ul>
@@ -395,24 +413,21 @@ function update() {}</code></pre>
   music.loopFull();
   music.volume = 0.25;
 }</code></pre>
+<p><small>Volatile Reaction Kevin MacLeod (incompetech.com)<br />
+Licensed under Creative Commons: By Attribution 3.0 License<br />
+http://creativecommons.org/licenses/by/3.0/</small></p>
 			</section>
 
 			<section>
-				<h5>Audio Resources</h5>
-<p><small>Resource: <a href="https://incompetech.com/">Incompetech.com</a>
-<br />Volatile Reaction Kevin MacLeod (incompetech.com)<br />
-Licensed under Creative Commons: By Attribution 3.0 License<br />
-http://creativecommons.org/licenses/by/3.0/</small></p>
- Resource: <a href="http://www.drpetter.se/project_sfxr.html">SFXR</a>
+				<h5>SFX/Audio Resources</h5>
+				<ul>
+					<li>Royalty Free Music: <a href="https://incompetech.com/">Incompetech.com</a></li>
+					<li>SFX Generator: <a href="http://www.drpetter.se/project_sfxr.html">SFXR</a>/<a href="http://www.bfxr.net/">BFXR</a></li>
+					<li>Music Creators: <a href="http://boscaceoil.net/">Bosca Ceoil</a>/<a href="https://lmms.io/">LMMS</a></li>
+					<li>Procedural Music Generator: <a href="http://www.abundant-music.com/">Abundant Music</a>
+					<li>Audio Editor: <a href="http://www.audacityteam.org/">Audacity</a></li>
 				</ul>
 			</section>
-
-			<!--<section>
-					<h2>Camera</h2>
-<pre><code>game.camera.shake(0.01, 200);</code></pre>
-					<p><a href="./demo/08-camera/index.html">let's take a look</a></p>
-			</section>-->
-
 
 			<section>
 				<h3>What do we need to learn?</h3>
@@ -430,7 +445,7 @@ http://creativecommons.org/licenses/by/3.0/</small></p>
 			</section>
 
 			<section>
-					<h3>Particles</h3>
+					<h5>Particles</h5>
 <pre><code>function create() {
   /* ... */
   emitter = game.add.emitter(0, 0, 100);
@@ -486,7 +501,7 @@ game.state.start('menu');
 </code></pre>
 			</section>
 
-			<section>
+			<!--<section>
 				<h2>Oh, the places you'll go!</h2>
 				<p>
 					<a href="http://phaser.io/examples">http://phaser.io/examples</a>
@@ -496,7 +511,7 @@ game.state.start('menu');
 					Particles, Particle Storm, Sprites, Text, Tile Sprites, Tilemaps, Time, Tweens, 
 					Video, Virtual Joystick, Weapon, World, More!!
 				</p>
-			</section>
+			</section>-->
 
 			<section>
 				<h1>Thank you!</h1>
@@ -506,9 +521,6 @@ game.state.start('menu');
 		</div>
 
 	</div>
-
-
-
 
 	<script src="lib/js/head.min.js"></script>
 	<script src="js/reveal.js"></script>
